@@ -1,0 +1,27 @@
+<!--<div class="loadding">-->
+<!--  <div class="modal-container">-->
+<!--    <span>Tạo từ mới thành công! Tiếp tục tạo từ mới ?</span>-->
+<!--    <div class="btn-action">-->
+<!--      <button type="button" class="btn btn-primary">Primary</button>-->
+<!--      <button type="button" class="btn btn-success">Success</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="modal">
+  <div class="modal-content-wrapper">
+    <!---->
+    <div class="modal-body">
+      <div class="content">
+        <!---->
+        <div class="body">{{title}}</div>
+        <!---->
+<!--        <button class="btn btn-primary btn-try-again" type="button">Thử lại</button>-->
+<!--        <button class="btn btn-primary btn-try-again" type="button">Thử lại</button>-->
+          <div class="btn-action">
+            <button (click)="onClickCancel.emit()" type="button" class="btn btn-primary">Huỷ</button>
+            <button (click)="onClickContinuous.emit()" type="button" class="btn btn-success">Tiếp tục</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

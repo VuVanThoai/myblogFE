@@ -1,0 +1,64 @@
+<div id="wrapper">
+  <app-left-nav-bar></app-left-nav-bar>
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-top-menu></app-top-menu>
+      <!-- Begin Page Content -->
+      <!--      <app-dasboard *ngIf="tab === adminContants.DASH_BOARD"></app-dasboard>-->
+      <!--      <app-create-article *ngIf="tab === adminContants.CREATE_ARTICLE"></app-create-article>-->
+      <!--      <app-article-management *ngIf="tab === adminContants.ARTICLE_MANAGEMENT"></app-article-management>-->
+      <!--      <app-article-statistical *ngIf="tab === adminContants.ARTICLE_STATISTICAL"></app-article-statistical>-->
+      <div class="container-fluid article-manager-container">
+        <div class="d-sm-flex align-items-center justify-content-between add-new-article-container mb-4">
+          <div class="add-new-article">
+            <h1 class="h3 mb-0 text-gray-800">Quản lý bài viết</h1>
+            <h4 id="notify"></h4>
+            <a [routerLink]="['/admin/create-article']" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+              class="fas fa-download fa-sm text-white-50"></i> Add new article</a>
+          </div>
+        </div>
+        <div class="row row-container">
+          <div *ngFor="let article of listArticle" class="article-items col-xl-3 col-md-6 col-sm-4 md-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div data-id="108" class="row row-article-info no-gutters align-items-center">
+                  <div class="status-approval">
+                    <span class="approved">Đã phê duyệt</span>
+                  </div>
+                  <div class="col mr-2 article-brief-info">
+                    <div data-toggle="tooltip" title="giam doc dieu hanh ripple cho biet viec su dung nang luong cho bitcoin thong qua pow tro thanh muc tieu chinh trong chuong trinh nghi su ve bien doi khi hau cua biden" class="text-xs font-weight-bold text-primary text-uppercase mb-1 name-article">
+                      <a [routerLink]="['/article/' + article.url]" class="link-name-article">{{article.title}}</a>
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <a class="info-article" href="#"><span>Ngày
+															tạo: </span> <span>{{article.createDate | date: 'dd-mm-yyyy'}}</span></a>
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <a class="info-article" href="#"><span>Tác
+															giả: </span> <span> thoaidz</span></a>
+                    </div>
+                  </div>
+                  <div class="col-auto action-article">
+                    <button type="button" (click)="onDeleteArticle()" class="btn btn-danger btn-delete">Delete</button>
+                    <button type="button" (click)="onEditArticle(article)" class="btn btn-warning btn-edit">Edit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="pagination">
+          <li *ngIf="listArticle.length === 0"><span>Bạn chưa có bài viết nào. Click thêm bài viết để thêm bài viết đầu tiên của bạn.</span></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+        </ul>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+
+<app-modal *ngIf="showModal" [title]="'Bạn có chắc chắn muốn xoá ?'" (onClickContinuous)="onOnfirmDeleteArticle()" (onClickCancel)="showModal = false"></app-modal>

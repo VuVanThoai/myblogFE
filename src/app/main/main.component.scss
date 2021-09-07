@@ -1,0 +1,34 @@
+/* [1] The container */
+.img-hover-zoom {
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  height: 100%;
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.2);
+}
+
+.view-more {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  a {
+    display: flex;
+    align-items: center;
+    padding: 20px 100px;
+  }
+}
+
+.category-name {
+  padding: 5px 10px;
+  background-color: #058bff;
+  width: max-content;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}

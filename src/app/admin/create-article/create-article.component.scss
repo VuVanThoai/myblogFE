@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+.main-container {
+  padding-top: 2%;
+}
+
+.add-category-for-article {
+  display: flex;
+}
+
+form {
+  width: 80%;
+}
+
+.title-action {
+  padding-bottom: 2%;
+}
+
+.form-create-article-container {
+  width: 100%
+}
+
+.form-create-article-container>div {
+  width: 100%;
+  padding: 0.5%
+}
+
+.row {
+  justify-content: center;
+}
+
+.catetgory-for-article {
+  display: flex;
+}
+
+.save-article {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-article>button {
+  float: right;
+  margin-bottom: 20px;
+  width: max-content;
+}
+
+.btn-save {
+  margin-left: 1%
+}
+
+.article-label {
+  padding-bottom: 1%
+}
+
+.select-box-form {
+  width: 40%;
+}
+
+select {
+  width: max-content;
+  max-width: 80%;
+  border-radius: 15px;
+}
+
+select:focus {
+  outline: none
+}
+
+option {
+  border-radius: 15px;
+}
+
+.select-box-form label {
+  padding-right: 2%
+}
+
+input, textarea {
+  width: 100%;
+  outline: none;
+  padding: 0.5% 1%;
+  border-radius: 10px;
+}
+
+textarea {
+  min-height: 350px;
+  max-height: 1000px;
+  height: max-content;
+}
+
+/* ---------------------------------- */
+@charset "UTF-8";
+
+/* Imgur Upload Style */
+body.loading .loading-modal {
+  display: block
+}
+
+.upload-image .title {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.dropzone {
+  border: 4px dashed #ccc;
+  height: 100px;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropzone p {
+  /*height: 100%;*/
+  /*line-height: 200px;*/
+  margin: 0%;
+  text-align: center;
+  width: 100%
+}
+
+.upload-image .input {
+  height: 100%;
+  left: 0;
+  outline: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%
+}
+
+.upload-image .status {
+  border-radius: 5px;
+  text-align: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-url {
+  width: 50%;
+}
+
+.dropzone.dropzone-dragging {
+  border-color: #000
+}
+
+.upload-image .loading-modal {
+  background-color: rgba(255, 255, 255, .8);
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%
+}
+
+.upload-image .loading-table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+
+.upload-image .img {
+  width: 100%;
+}
+
+.element-suggestions>div {
+  font-weight: bold;
+  color: #008BFF;
+}
+
+.element-suggestions>div>span {
+  cursor: pointer;
+}
+
+.notify {
+  width: 45%;
+  background-image: linear-gradient(#C6C6C6, #ECECEC);
+  height: 10%;
+  position: absolute;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2%;
+  display: none;
+  padding: 3%
+}
+
+.notify h3 {
+  font-size: 20px
+}
+
+.close-popup {
+  top: -10px;
+  right: -10px;
+  position: absolute;
+  border-radius: 50%;
+  width: 3%;
+  cursor: pointer;
+}
+
+.warring-input {
+  color: red
+}

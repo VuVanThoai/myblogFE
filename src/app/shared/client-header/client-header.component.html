@@ -1,0 +1,42 @@
+<header>
+  <div class="bg-191">
+    <div class="container">
+      <div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5">
+        <ul class="float-left float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-10">
+          <li><a class="pl-0 pl-sm-10" href="#">Về chúng tôi</a></li>
+          <li><a href="#">Liên hệ</a></li>
+          <li><a [routerLink]="['/admin']">Login admin</a></li>
+        </ul>
+        <ul class="float-right float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-5">
+          <li><a class="pl-0 pl-sm-10" href="#"><i class="ion-social-facebook"></i></a></li>
+          <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+          <li><a href="#"><i class="ion-social-google"></i></a></li>
+          <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+          <li><a href="#"><i class="ion-social-bitcoin"></i></a></li>
+        </ul>
+      </div><!-- top-menu -->
+    </div><!-- container -->
+  </div><!-- bg-191 -->
+
+  <div class="container">
+    <a class="logo" [routerLink]="['/main']"><img src="assets/images/logo.gif" alt="Logo"></a>
+
+    <a class="right-area src-btn">
+      <i class="active src-icn ion-search"></i>
+      <i class="close-icn ion-close"></i>
+    </a>
+    <div class="src-form">
+      <form>
+        <input type="text" placeholder="Search here">
+        <button type="submit"><i class="ion-search"></i></button>
+      </form>
+    </div>
+
+    <a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
+
+    <ul class="main-menu" id="main-menu">
+      <li *ngFor="let category of categories"><a [routerLink]="['/main', category.shortUrl]">{{category.name}}</a></li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</header>

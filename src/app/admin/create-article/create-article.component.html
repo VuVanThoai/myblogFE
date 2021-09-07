@@ -1,0 +1,70 @@
+<div id="wrapper">
+  <app-left-nav-bar></app-left-nav-bar>
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-top-menu></app-top-menu>
+      <!-- Begin Page Content -->
+      <div class="row form-article">
+        <form [formGroup]="formInitArticle" (ngSubmit)="onCreateArticle()">
+          <div class="form-create-article-container">
+            <div class="catetgory-for-article">
+              <div class="select-box-form list-parent-catetgory">
+                <label>Danh mục cha:</label>
+                <select formControlName="category" name="parent-category" id="parent-category">
+                  <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="upload-image">
+              <input (change)="onChangeImages($event)" type="file" name="choose file" multiple="true">
+              <button type="button" (click)="uploadImages()" class="btn btn-primary">Upload Images</button>
+            </div>
+            <div>
+              <div class="article-label">
+                <span>Avatar (Chiều dài = 1.86 x chiều rộng) : </span>
+              </div>
+              <div class="article-value">
+                <input formControlName="imgInstead" class="avatar" type="text" placeholder="Nhập đường dẫn tới avatar ..." required="required">
+              </div>
+            </div>
+            <div id="input-title-article">
+              <div class="article-label">
+                <span>Title : </span><span class="warring-input">( Không được sử dụng các kí tự _ , / , \ , % , * , " , ')</span>
+              </div>
+              <div class="article-value">
+                <input formControlName="title" class="title-article" type="text" placeholder="Nhập tiêu đề bài viết ..." required="required" />
+              </div>
+            </div>
+            <div>
+              <div class="article-label">
+                <span>Body : </span>
+              </div>
+              <div class="article-value">
+                <textarea formControlName="body" required id="body-article" placeholder="Nhập nội dung bài viết ..."></textarea>
+              </div>
+            </div>
+            <div>
+              <div class="article-label">
+                <span>Tags</span>
+              </div>
+              <div class="article-value">
+                <input formControlName="tag" class="title-article" type="text" placeholder="Nhập tags ..." required="required" />
+              </div>
+            </div>
+            <div class="save-article">
+              <button (click)="onReview()" type="button" type-action="preview" class="btn btn-success btn-preview">Xem trước</button>
+              <button type="submit" type-action="save" class="btn btn-success btn-save" data-value="${status }">Lưu</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i></a>
+<app-modal *ngIf="showModal" [title]="'Tạo bài viết thành công'" (onClickContinuous)="onBackToManagement()"></app-modal>
