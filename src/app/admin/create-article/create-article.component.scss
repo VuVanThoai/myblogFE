@@ -49,7 +49,8 @@ form {
 }
 
 .article-label {
-  padding-bottom: 1%
+  padding-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .select-box-form {
@@ -74,11 +75,14 @@ option {
   padding-right: 2%
 }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
+  height: 30px;
   outline: none;
   padding: 0.5% 1%;
   border-radius: 10px;
+  border: 1px solid #dedede;
+  margin-bottom: 0.5rem;
 }
 
 textarea {

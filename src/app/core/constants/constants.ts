@@ -1,4 +1,3 @@
 export enum Constants {
-  DOMAIN_API = 'http://localhost:8080/api/',
-  DOMAIN = 'http://localhost:8080/'
+  DOMAIN_API = 'https://giatrivn247.com:443/api/',
 }

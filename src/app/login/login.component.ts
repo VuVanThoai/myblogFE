@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonService} from "../core/service/common.service";
 import {Router} from "@angular/router";
+import {MethodApi} from "../shared/shared.constant";
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     console.log(this.formLogin?.value);
     const requestBody = this.formLogin.value;
     this.commonService.callApi({
-      method: 'POST',
+      method: MethodApi.POST,
       url: 'auth',
       progress: true,
       data: requestBody,

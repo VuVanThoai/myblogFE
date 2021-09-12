@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Article, Categories} from "../../shared/shared.constant";
+import {Article, Categories, MethodApi} from "../../shared/shared.constant";
 import {CommonService} from "../../core/service/common.service";
 import {ArticleService} from "../../core/service/article.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -31,7 +31,11 @@ export class CreateArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInitArticle = this.fb.group({
-      category: ['', [Validators.required]],
+      category: [{
+        id: 1,
+        name: 'Giải trí',
+        shortUrl: 'giai-tri'
+      }, [Validators.required]],
       imgInstead: ['', [Validators.required]],
       title: ['', [Validators.required]],
       body: ['', [Validators.required]],
@@ -45,42 +49,9 @@ export class CreateArticleComponent implements OnInit {
     })
   }
 
-  onChangeImages($event: Event) {
-    // @ts-ignore
-    console.log($event.target.files.length);
-    // @ts-ignore
-    const lengthFiles = $event.target.files.length;
-    // @ts-ignore
-    const fileImages = $event.target.files as Array<FileList>;
-    for (let index = 0; index < lengthFiles; index++) {
-      // @ts-ignore
-      this.images.push($event.target.files[index]);
-    }
-  }
-
-  uploadImages() {
-    if (!this.images) {
-      return;
-    }
-    const formData = new FormData();
-    this.images.forEach((image: any) => {
-      formData.append('files', image);
-    })
-    this.commonService.callApi({
-      method: 'POST',
-      url: 'file/upload',
-      data: formData,
-      progress: true,
-      contentType: 'upload',
-      success:(data: any) => {
-        console.log(data);
-      }
-    })
-  }
-
   getArticleById(id: number) {
     this.commonService.callApi({
-      method: 'GET',
+      method: MethodApi.GET,
       url: 'v1/article/' + id,
       progress: true,
       success: (data: Article) => {
@@ -91,8 +62,9 @@ export class CreateArticleComponent implements OnInit {
   }
 
   updateValueFormFromArticle(article: Article) {
+    console.log(this.getCategoryFromId(article.idCategory))
     this.formInitArticle.patchValue({
-      category: article.idCategory,
+      category: this.getCategoryFromId(article.idCategory),
       title: article.title,
       url: article.url,
       imgInstead: article.imgInstead,
@@ -103,13 +75,17 @@ export class CreateArticleComponent implements OnInit {
     })
   }
 
+  getCategoryFromId(id: number) {
+    return this.categories.find(category => category.id === id);
+  }
+
   onCreateArticle() {
     console.log(this.formInitArticle.value);
     const requestBody = this.renderArticleData();
     console.log(requestBody);
     this.commonService.callApi({
       url: 'v1/article',
-      method: 'POST',
+      method: MethodApi.POST,
       data: requestBody,
       progress: true,
       success: (responseBody: any) => {
@@ -128,16 +104,20 @@ export class CreateArticleComponent implements OnInit {
   }
 
   renderArticleData() {
+    console.log(this.formInitArticle.get('category')?.value.name);
     let article = {
-      idCategory: this.formInitArticle.get('category')?.value,
+      idCategory: this.formInitArticle.get('category')?.value.id,
+      nameCategory: this.formInitArticle.get('category')?.value.name,
       title: this.formInitArticle.get('title')?.value,
       url: this.removeVietnameseTones(this.formInitArticle.get('title')?.value),
       imgInstead: this.formInitArticle.get('imgInstead')?.value,
       body: this.formInitArticle.get('body')?.value,
       tag: this.formInitArticle.get('tag')?.value,
       createDate: new Date(),
-      view: 1
+      view: 1,
+      comment: 0
     } as Article;
+    console.log(article);
     if (this.article) {
       article = {...article, id: this.article.id};
       article = {...article, createDate: this.article.createDate}
@@ -176,6 +156,9 @@ export class CreateArticleComponent implements OnInit {
     str = str.replace(/   /g, ' ');
     str = str.replace(/  /g, ' ');
     str = str.replace(/ /g, '-');
+    if (str.charAt(str.length - 1) === '-') {
+      str = str.substring(0, str.length - 1);
+    }
     return str;
   }
 

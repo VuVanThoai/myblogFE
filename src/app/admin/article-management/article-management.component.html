@@ -4,7 +4,7 @@
   <div id="content-wrapper" class="d-flex flex-column">
     <!-- Main Content -->
     <div id="content">
-      <app-top-menu></app-top-menu>
+      <app-top-menu (search)="onSearch($event)"></app-top-menu>
       <!-- Begin Page Content -->
       <!--      <app-dasboard *ngIf="tab === adminContants.DASH_BOARD"></app-dasboard>-->
       <!--      <app-create-article *ngIf="tab === adminContants.CREATE_ARTICLE"></app-create-article>-->
@@ -33,7 +33,7 @@
                     </div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                       <a class="info-article" href="#"><span>Ngày
-															tạo: </span> <span>{{article.createDate | date: 'dd-mm-yyyy'}}</span></a>
+															tạo: </span> <span>{{article.createDate | date: 'dd-MM-yyyy'}}</span></a>
                     </div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
                       <a class="info-article" href="#"><span>Tác
@@ -49,9 +49,9 @@
             </div>
           </div>
         </div>
+        <div>Bạn chưa có bài viết nào. Click thêm bài viết để thêm bài viết đầu tiên của bạn.</div>
         <ul class="pagination">
-          <li *ngIf="listArticle.length === 0"><span>Bạn chưa có bài viết nào. Click thêm bài viết để thêm bài viết đầu tiên của bạn.</span></li>
-          <li class="page-item active"><a class="page-link">1</a></li>
+          <li *ngFor="let index of listPaging; index as i" [class.active]="indexActivePaging === i" (click)="onCLickPaging(i)" class="page-item"><a class="page-link">{{index}}</a></li>
         </ul>
       </div>
       <!-- /.container-fluid -->

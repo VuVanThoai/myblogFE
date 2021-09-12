@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {CommonService} from "../core/service/common.service";
-import {Article} from "../shared/shared.constant";
+import {Article, Comment, MethodApi} from "../shared/shared.constant";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-single-article',
@@ -11,28 +13,132 @@ import {Article} from "../shared/shared.constant";
 export class SingleArticleComponent implements OnInit {
 
   article?: Article;
+  listTags: string[] = [];
+  listComments: Comment[] = [];
+  formComment: FormGroup = new FormGroup({});
+  listArticlesHeightView?: Array<Article>;
+  showModal = false;
 
   constructor(
     private route: ActivatedRoute,
-    private readonly commonService: CommonService
-  ) { }
+    private readonly commonService: CommonService,
+    private fb: FormBuilder,
+    private router: Router,
+    private pageTitle: Title,
+    private meta: Meta
+  ) {
+    this.initFormComment();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((value) => {
-      console.log(parseInt(value.get('urlArticle') || ''));
       this.getArticleByUrl(value.get('urlArticle') || '');
+      this.getListArticlesHeightView();
+    })
+  }
+
+  initFormComment() {
+    this.formComment = this.fb.group({
+      clientName: ['', [Validators.maxLength(100)]],
+      comment: ['', [Validators.required, Validators.maxLength(1000)]]
     })
   }
 
   getArticleByUrl(url: string) {
     this.commonService.callApi({
-      method: 'GET',
-      url: 'v1/article/url/' + url,
+      method: MethodApi.GET,
+      url: 'v1/article/query-url/' + url,
       progress: true,
       success: (article: Article) => {
+        if (!article) {
+          this.router.navigate(['/error']);
+        }
         this.article = article;
+        this.pageTitle.setTitle(article.title);
+        this.meta.updateTag({name: 'description', content: article.title} )
+        this.listTags = article.tag.split(',');
+        this.getListCommentsByIdArticle();
+        this.updateViewArticle();
+      },
+      error: (error: any) => {
+        this.router.navigate(['/error']);
       }
     })
   }
 
+  getListCommentsByIdArticle() {
+    this.commonService.callApi({
+      method: MethodApi.GET,
+      url: 'v1/comments/' + this.article?.id,
+      success: (data: Array<Comment>) => {
+        this.listComments = data;
+      },
+      error: (error: any) => {
+
+      }
+    })
+  }
+
+  getListArticlesHeightView() {
+    this.commonService.callApi({
+      method: MethodApi.GET,
+      url: 'v1/articles/height-view/main',
+      progress: true,
+      success: (data: Array<Article>) => {
+        this.listArticlesHeightView = data;
+      },
+      error: (error: any) => {
+        this.showModal = true;
+      }
+    })
+  }
+
+  saveComment() {
+    if (this.formComment.invalid) {
+      return;
+    }
+    const requestBody = {
+      idArticle: this.article?.id,
+      clientName: this.formComment.get('clientName')?.value,
+      comment: this.formComment.get('comment')?.value,
+      createDate: new Date()
+    };
+    this.commonService.callApi({
+      method: MethodApi.POST,
+      url: 'v1/comment',
+      data: requestBody,
+      success: (newComment: Comment) => {
+        this.listComments.splice(0, 0, newComment);
+        this.updateCommentArticle();
+      }
+    })
+  }
+
+  updateCommentArticle() {
+    if (!this.article) {
+      return;
+    }
+    const requestBody = {
+      ...this.article, comment: this.article.comment++,
+    };
+    this.commonService.callApi({
+      method: MethodApi.POST,
+      url: 'v1/article',
+      data:requestBody,
+    })
+  }
+
+  updateViewArticle() {
+    if (!this.article) {
+      return;
+    }
+    const requestBody = {
+      ...this.article, view: this.article.view += (Math.floor(Math.random() * 2) + 1),
+    };
+    this.commonService.callApi({
+      method: MethodApi.POST,
+      url: 'v1/article',
+      data:requestBody,
+    })
+  }
 }

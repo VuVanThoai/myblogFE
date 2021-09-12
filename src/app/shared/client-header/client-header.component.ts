@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 export class ClientHeaderComponent implements OnInit {
 
   categories = Categories;
+  showFormSearch = false;
+  showMenuMobile = false;
 
   constructor(
     private readonly router: Router

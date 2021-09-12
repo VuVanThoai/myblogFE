@@ -11,6 +11,7 @@ export class ModalComponent implements OnInit {
   @Output() onClickCancel = new EventEmitter();
 
   @Input() title?: string;
+  @Input() description?: string;
 
   constructor() { }
 

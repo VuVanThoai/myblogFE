@@ -8,20 +8,24 @@ import {SharedModule} from "./shared/shared.module";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import { SingleArticleComponent } from './single-article/single-article.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { ErrorHandlingComponent } from './error-handling/error-handling.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     SingleArticleComponent,
+    ErrorHandlingComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule,
-    SharedModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CommonModule,
+        SharedModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

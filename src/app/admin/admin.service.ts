@@ -9,13 +9,15 @@ export class AdminService {
 
   private articleStore: BehaviorSubject<Article> = new BehaviorSubject<Article>({
     idCategory: 0,
+    nameCategory: 'Giải trí',
     url: 'string',
     imgInstead: 'string',
     title: 'string',
     body: 'string',
     tag: 'string',
     createDate: new Date(),
-    view: 1
+    view: 1,
+    comment: 0
   });
 
   setArticleStore(article: Article) {

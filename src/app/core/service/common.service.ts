@@ -23,8 +23,6 @@ export class CommonService {
     const url = this.constants.DOMAIN_API + options.url;
     const data = options.data;
     const contentType = options.contentType ? options.contentType : 'application/json';
-    console.log(options)
-
     let progress = options.progress;
     if (progress === undefined) {
       progress = true;
@@ -39,7 +37,6 @@ export class CommonService {
     const httpOptions = {
       headers: this.buildHttpHeaders(contentType)
     };
-    console.log(httpOptions)
 
     if (method === 'GET') {
       obs = this.http.get(url, httpOptions);
@@ -91,7 +88,7 @@ export class CommonService {
       return new HttpHeaders({
         'Content-Type': contentType,
         'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'Access-Control-Allow-Origin': 'http://localhost:4200',
+        'Access-Control-Allow-Origin': 'https://giaitrivn247.com',
         'Access-Control-Allow-Credentials': 'true',
         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
         'Access-Control-Max-Age': '3600',
@@ -100,7 +97,7 @@ export class CommonService {
     }
     return new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Origin': 'https://giaitrivn247.com',
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
       'Access-Control-Max-Age': '3600',

@@ -11,16 +11,16 @@
           <div class="form-create-article-container">
             <div class="catetgory-for-article">
               <div class="select-box-form list-parent-catetgory">
-                <label>Danh mục cha:</label>
+                <label class="article-label">Danh mục cha:</label>
                 <select formControlName="category" name="parent-category" id="parent-category">
-                  <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                  <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
                 </select>
               </div>
             </div>
-            <div class="upload-image">
-              <input (change)="onChangeImages($event)" type="file" name="choose file" multiple="true">
-              <button type="button" (click)="uploadImages()" class="btn btn-primary">Upload Images</button>
-            </div>
+<!--            <div class="upload-image">-->
+<!--              <input (change)="onChangeImages($event)" type="file" name="choose file" multiple="true">-->
+<!--              <button type="button" (click)="uploadImages()" class="btn btn-primary">Upload Images</button>-->
+<!--            </div>-->
             <div>
               <div class="article-label">
                 <span>Avatar (Chiều dài = 1.86 x chiều rộng) : </span>

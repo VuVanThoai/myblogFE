@@ -1,9 +1,8 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {Article, Categories, Category} from "../../shared/shared.constant";
+import {Component, HostListener, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {Article, Categories, Category, MethodApi} from "../../shared/shared.constant";
 import {CommonService} from "../../core/service/common.service";
-import {switchMap} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-articles-category',
@@ -12,33 +11,61 @@ import {Observable} from "rxjs";
 })
 export class ArticlesCategoryComponent implements OnInit {
 
-  urlCategory: string = '';
-  articles: Array<Article> = [];
   categories = Categories;
+  urlCategory: string = '';
+  categoryByShortUrl?: Category;
+  listArticlesByCategory: Array<Article> = [];
+  listArticlesHeightView?: Array<Article>;
+  showModal = false;
+  offsetLoadMore = 0;
 
   constructor(
     private readonly route: ActivatedRoute,
     private commonService: CommonService,
+    private router: Router,
+    private pageTitle: Title,
+    private meta: Meta
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((value) => {
       this.urlCategory = value.get('categoryUrl') || '';
-      console.log(this.urlCategory)
-      this.getListArticlesByIdCategory(this.urlCategory);
+      this.getCategoryByShortUrl(this.urlCategory);
+      if (this.categoryByShortUrl === undefined) {
+        this.router.navigate(['/error']);
+      }
+      this.listArticlesByCategory = [];
+      this.showModal = false;
+      this.offsetLoadMore = 0;
+      this.pageTitle.setTitle('Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name);
+      this.meta.updateTag({name: 'description', content: 'Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name} )
+      this.getListArticlesByIdCategoryOffset(0);
+      this.getListArticlesHeightView();
     })
   }
 
-  getListArticlesByIdCategory(shortUrl: string) {
-    const idCategory = this.getIdCategoryByShortUrl(shortUrl);
-    console.log(idCategory);
+  getListArticlesHeightView() {
     this.commonService.callApi({
-      url: 'v1/articles/' + idCategory,
-      method: 'GET',
+      method: MethodApi.GET,
+      url: 'v1/articles/height-view/main',
       progress: true,
       success: (data: Array<Article>) => {
-        console.log(data)
-        this.articles = data;
+        this.listArticlesHeightView = data;
+      },
+      error: (error: any) => {
+        this.showModal = true;
+      }
+    })
+  }
+
+  getListArticlesByIdCategoryOffset(offset: number) {
+    const idCategory = this.categoryByShortUrl?.id;
+    this.commonService.callApi({
+      url: 'v1/articles/' + idCategory + '?offset='+ offset,
+      method: MethodApi.GET,
+      progress: true,
+      success: (data: Array<Article>) => {
+        this.listArticlesByCategory = [...this.listArticlesByCategory, ...data];
       },
       error: (error: any) => {
 
@@ -46,12 +73,25 @@ export class ArticlesCategoryComponent implements OnInit {
     })
   }
 
-  getIdCategoryByShortUrl(shortUrl: string) {
-    return (this.categories.find(category => {
-      console.log(shortUrl);
-      console.log(category.shortUrl);
+  getCategoryByShortUrl(shortUrl: string) {
+    this.categoryByShortUrl = this.categories.find(category => {
       return category.shortUrl === shortUrl
-    }))?.id;
+    });
   }
 
+  loadMoreArticles() {
+    this.offsetLoadMore++;
+    this.getListArticlesByIdCategoryOffset(this.offsetLoadMore * 20);
+  }
+
+  @HostListener("window:scroll", [])
+  onScroll(): void {
+    if (this.bottomReached()) {
+      this.loadMoreArticles();
+    }
+  }
+
+  bottomReached(): boolean {
+    return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+  }
 }
