@@ -15,9 +15,10 @@ export class ArticlesCategoryComponent implements OnInit {
   urlCategory: string = '';
   categoryByShortUrl?: Category;
   listArticlesByCategory: Array<Article> = [];
-  listArticlesHeightView?: Array<Article>;
+  listNewArticle?: Array<Article>;
   showModal = false;
   offsetLoadMore = 0;
+  loading = true;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -40,19 +41,21 @@ export class ArticlesCategoryComponent implements OnInit {
       this.pageTitle.setTitle('Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name);
       this.meta.updateTag({name: 'description', content: 'Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name} )
       this.getListArticlesByIdCategoryOffset(0);
-      this.getListArticlesHeightView();
+      this.getListNewArticles();
     })
   }
 
-  getListArticlesHeightView() {
+  getListNewArticles() {
     this.commonService.callApi({
       method: MethodApi.GET,
-      url: 'v1/articles/height-view/main',
+      url: 'v1/articles/os/0',
       progress: true,
       success: (data: Array<Article>) => {
-        this.listArticlesHeightView = data;
+        this.loading = false;
+        this.listNewArticle = data;
       },
       error: (error: any) => {
+        this.loading = false;
         this.showModal = true;
       }
     })
@@ -68,7 +71,6 @@ export class ArticlesCategoryComponent implements OnInit {
         this.listArticlesByCategory = [...this.listArticlesByCategory, ...data];
       },
       error: (error: any) => {
-
       }
     })
   }

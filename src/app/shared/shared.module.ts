@@ -9,7 +9,7 @@ import {ModalComponent} from "./modal/modal.component";
 
 @NgModule({
   declarations: [ClientHeaderComponent, ClientFooterComponent, SharedComponent, LoadingComponent, ModalComponent],
-    exports: [ClientHeaderComponent, ClientFooterComponent, ModalComponent],
+    exports: [ClientHeaderComponent, ClientFooterComponent, ModalComponent, LoadingComponent],
     imports: [
         CommonModule,
         RouterModule

@@ -6,18 +6,7 @@ import {CommonService} from "../../core/service/common.service";
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })
-export class LoadingComponent implements OnInit {
+export class LoadingComponent {
 
-  isLoading = false;
-
-  constructor(
-    private commonService: CommonService
-  ) {
-    this.commonService.progressEvent.subscribe((data: boolean) => this.isLoading = data);
-  }
-
-  ngOnInit(): void {
-  }
-
-
+  @Input() loading?: boolean;
 }

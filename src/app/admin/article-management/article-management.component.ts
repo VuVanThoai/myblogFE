@@ -39,7 +39,6 @@ export class ArticleManagementComponent implements OnInit {
 
   onDeleteArticle() {
     this.showModal = true;
-    console.log('on delete')
   }
 
   onOnfirmDeleteArticle() {
@@ -65,7 +64,6 @@ export class ArticleManagementComponent implements OnInit {
   }
 
   onSearch(keySearch: any) {
-    console.log(keySearch)
     this.commonService.callApi({
       method: MethodApi.GET,
       url: 'v1/search?key=' + keySearch + '&offset=0',

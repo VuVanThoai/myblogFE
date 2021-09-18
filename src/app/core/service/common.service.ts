@@ -20,7 +20,7 @@ export class CommonService {
 
   callApi(options: OptionCallAPI) {
     const method = options.method;
-    const url = this.constants.DOMAIN_API + options.url;
+    const url = 'https://' + location.hostname + ':8443/api/' + options.url;
     const data = options.data;
     const contentType = options.contentType ? options.contentType : 'application/json';
     let progress = options.progress;
@@ -64,7 +64,6 @@ export class CommonService {
         }
       },
       (errorData) => {
-        console.log(errorData);
         if (progress) {
           // @ts-ignore
           this.progressEvent.emit(false);

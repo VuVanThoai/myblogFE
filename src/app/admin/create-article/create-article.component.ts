@@ -62,7 +62,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   updateValueFormFromArticle(article: Article) {
-    console.log(this.getCategoryFromId(article.idCategory))
     this.formInitArticle.patchValue({
       category: this.getCategoryFromId(article.idCategory),
       title: article.title,
@@ -80,9 +79,7 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onCreateArticle() {
-    console.log(this.formInitArticle.value);
     const requestBody = this.renderArticleData();
-    console.log(requestBody);
     this.commonService.callApi({
       url: 'v1/article',
       method: MethodApi.POST,
@@ -90,7 +87,6 @@ export class CreateArticleComponent implements OnInit {
       progress: true,
       success: (responseBody: any) => {
         this.showModal = true;
-        console.log(responseBody);
       },
       error: (error: any) => {
         console.log(error);
@@ -104,7 +100,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   renderArticleData() {
-    console.log(this.formInitArticle.get('category')?.value.name);
     let article = {
       idCategory: this.formInitArticle.get('category')?.value.id,
       nameCategory: this.formInitArticle.get('category')?.value.name,
@@ -117,10 +112,8 @@ export class CreateArticleComponent implements OnInit {
       view: 1,
       comment: 0
     } as Article;
-    console.log(article);
     if (this.article) {
-      article = {...article, id: this.article.id};
-      article = {...article, createDate: this.article.createDate}
+      article = {...article, id: this.article.id, createDate: this.article.createDate, comment: this.article.comment, view: this.article.view};
     }
     return article;
   }

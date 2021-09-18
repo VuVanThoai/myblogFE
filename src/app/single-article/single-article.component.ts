@@ -18,6 +18,7 @@ export class SingleArticleComponent implements OnInit {
   formComment: FormGroup = new FormGroup({});
   listArticlesHeightView?: Array<Article>;
   showModal = false;
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,6 +54,7 @@ export class SingleArticleComponent implements OnInit {
         if (!article) {
           this.router.navigate(['/error']);
         }
+        this.loading = false;
         this.article = article;
         this.pageTitle.setTitle(article.title);
         this.meta.updateTag({name: 'description', content: article.title} )
@@ -61,6 +63,7 @@ export class SingleArticleComponent implements OnInit {
         this.updateViewArticle();
       },
       error: (error: any) => {
+        this.loading = false;
         this.router.navigate(['/error']);
       }
     })
@@ -74,7 +77,6 @@ export class SingleArticleComponent implements OnInit {
         this.listComments = data;
       },
       error: (error: any) => {
-
       }
     })
   }
@@ -82,7 +84,7 @@ export class SingleArticleComponent implements OnInit {
   getListArticlesHeightView() {
     this.commonService.callApi({
       method: MethodApi.GET,
-      url: 'v1/articles/height-view/main',
+      url: 'v1/articles/height-view',
       progress: true,
       success: (data: Array<Article>) => {
         this.listArticlesHeightView = data;
@@ -97,6 +99,7 @@ export class SingleArticleComponent implements OnInit {
     if (this.formComment.invalid) {
       return;
     }
+    this.loading = true
     const requestBody = {
       idArticle: this.article?.id,
       clientName: this.formComment.get('clientName')?.value,
@@ -108,6 +111,7 @@ export class SingleArticleComponent implements OnInit {
       url: 'v1/comment',
       data: requestBody,
       success: (newComment: Comment) => {
+        this.loading = false;
         this.listComments.splice(0, 0, newComment);
         this.updateCommentArticle();
       }
@@ -119,7 +123,7 @@ export class SingleArticleComponent implements OnInit {
       return;
     }
     const requestBody = {
-      ...this.article, comment: this.article.comment++,
+      ...this.article, comment: this.article.comment += 1,
     };
     this.commonService.callApi({
       method: MethodApi.POST,

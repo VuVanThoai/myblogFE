@@ -21,7 +21,6 @@ export class AdminService {
   });
 
   setArticleStore(article: Article) {
-    console.log('-----set article to store')
     this.articleStore.next(article);
   }
 

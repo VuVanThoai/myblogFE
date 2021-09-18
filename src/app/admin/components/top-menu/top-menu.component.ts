@@ -14,7 +14,6 @@ export class TopMenuComponent implements OnInit {
   }
 
   onSearch(value: string) {
-    console.log(value)
     this.search.emit(value);
   }
 }

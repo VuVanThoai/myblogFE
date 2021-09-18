@@ -2,23 +2,18 @@
 <section>
   <div class="container">
     <div class="row df-align-item-center">
-
       <div class="col-md-12 col-lg-8">
         <img src="{{article?.imgInstead}}">
-
         <h3 class="mt-30"><b>{{article?.title}}</b></h3>
         <ul class="list-li-mr-20 mtb-15">
-          <li>Tác giả: <a href="#"><b>Thuỳ Dương </b></a> {{article?.createDate | date: 'dd-MM-yyyy' }}</li>
+          <li>Tác giả: <a class="color-primary"><b>Thuỳ Dương </b></a>. Ngày viết bài:  {{article?.createDate | date: 'dd-MM-yyyy' }}</li>
           <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>{{article?.view}}</li>
           <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>{{article?.comment}}</li>
         </ul>
-
         <ng-container>
           <div [innerHTML]="article?.body"></div>
         </ng-container>
-
         <div class="float-left-right text-center mt-40 mt-sm-20">
-
           <ul
             class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
             <li *ngFor="let tag of listTags"><a>{{tag}}</a></li>
@@ -30,27 +25,19 @@
             <li><a href="#"><i class="ion-social-google"></i></a></li>
             <li><a href="#"><i class="ion-social-instagram"></i></a></li>
           </ul>
-
         </div><!-- float-left-right -->
-
         <div class="brdr-ash-1 opacty-5"></div>
-
         <h4 class="p-title mt-20"><b>Hãy để lại bình luận của bạn về bài viết này nhé.</b></h4>
-
         <div *ngFor="let comment of listComments" class="sided-70 mb-40">
-
           <div class="s-left rounded">
             <img alt="" src="assets/images/profile-3-120x120.jpg">
           </div><!-- s-left -->
-
           <div class="s-right ml-100 ml-xs-85">
             <h5><b>{{comment?.clientName || 'Khách ẩn danh'}} </b> <span class="font-8 color-ash"> đã thêm một bình luận vào {{comment.createDate | date: 'dd-MM-yyyy'}}</span>
             </h5>
             <span>{{comment.comment}}</span>
           </div><!-- s-right -->
-
         </div><!-- sided-70 -->
-
         <form (ngSubmit)="saveComment()" [formGroup]="formComment"
               class="form-block form-plr-15 form-h-45 form-mb-20 form-brdr-lite-white mb-md-50">
           <input formControlName="clientName" placeholder="Tên của bạn ..." type="text">
@@ -64,16 +51,14 @@
       <div class="d-none d-md-block d-lg-none col-md-3"></div>
       <div class="col-md-6 col-lg-4">
         <div class="pl-20 pl-md-0">
-
           <div>
             <h4 class="p-title"><b>Có thể bạn sẽ thích</b></h4>
             <a *ngFor="let article of listArticlesHeightView" [routerLink]="['/article/' + article.url]"
-               class="oflow-hidden pos-relative mb-20 dplay-block">
+               class="article-container oflow-hidden pos-relative mb-20 dplay-block">
               <div class="wh-100x abs-tlr"><img alt="" src="{{article.imgInstead}}"></div>
               <div class="ml-120 min-h-100x">
-                <h5><b>{{article.title}}</b></h5>
-                <h6 class="color-lite-black pt-10">Tác giả <span
-                  class="color-black"><b>Thuỳ Dương,</b></span> {{article.createDate | date: 'dd-MM-yy'}}</h6>
+                <h5 class="article-title"><b>{{article.title}}</b></h5>
+                <h6 class="pt-10">Tác giả <span><b>Thuỳ Dương,</b></span> {{article.createDate | date: 'dd-MM-yy'}}</h6>
               </div>
             </a><!-- oflow-hidden -->
           </div><!-- mtb-50 -->
@@ -82,4 +67,13 @@
     </div><!-- row -->
   </div><!-- container -->
 </section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-6 -col-xs-12">
+      <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
+    </div>
+  </div>
+</div>
 <app-client-footer></app-client-footer>
+<app-loading [loading]="loading"></app-loading>

@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    console.log(this.formLogin?.value);
     const requestBody = this.formLogin.value;
     this.commonService.callApi({
       method: MethodApi.POST,

@@ -10,10 +10,11 @@ import {Meta, Title} from "@angular/platform-browser";
 })
 export class MainComponent implements OnInit {
 
-  listNewArticle: Article[] = [];
+  listNewArticle?: Article[];
   listArticlesHeightView?: Array<Article>;
   showModal = false;
   offsetLoadMore = 0;
+  loading = true;
 
   constructor(
     private commonService: CommonService,
@@ -34,9 +35,11 @@ export class MainComponent implements OnInit {
       url: 'v1/articles/height-view/main',
       progress: true,
       success: (data: Array<Article>) => {
+        this.loading = false;
         this.listArticlesHeightView = data;
       },
       error: (error: any) => {
+        this.loading = false;
         this.showModal = true;
       }
     })
@@ -48,9 +51,11 @@ export class MainComponent implements OnInit {
       url: 'v1/articles/os/' + offset,
       progress: true,
       success: (data: Array<Article>) => {
-        this.listNewArticle = [...this.listNewArticle, ...data];
+        this.loading = false;
+        this.listNewArticle = this.listNewArticle ? [...this.listNewArticle, ...data] : data;
       },
       error: (error: any) => {
+        this.loading = false;
         this.showModal = true;
       }
     })

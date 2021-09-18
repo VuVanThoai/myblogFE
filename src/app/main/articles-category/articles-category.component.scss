@@ -15,3 +15,20 @@ a:hover {
   text-decoration: none !important;
   color: #F9B500 !important;
 }
+
+.article-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.article-container {
+  .article-title {
+    height: 70px;
+  }
+  &:hover {
+    color: #F9B500;
+  }
+}

@@ -11,3 +11,15 @@
 .df-align-item-center {
   align-items: flex-start;
 }
+
+.article-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.article-container:hover {
+  color: #F9B500;
+}
