@@ -145,4 +145,9 @@ export class SingleArticleComponent implements OnInit {
       data:requestBody,
     })
   }
+
+  onViewOtherArticle(url: string) {
+    this.router.navigate(['/article/' + url]);
+    window.scroll(0, 0);
+  }
 }

@@ -56,7 +56,7 @@
             <div class="a-ads-container ads-right">
               <iframe data-aa="1786965" src="//ad.a-ads.com/1786965?size=336x280" style="width:336px; height:280px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
             </div>
-            <a *ngFor="let article of listArticlesHeightView" [routerLink]="['/article/' + article.url]"
+            <a *ngFor="let article of listArticlesHeightView" (click)="onViewOtherArticle(article.url)"
                class="article-container oflow-hidden pos-relative mb-20 dplay-block">
               <div class="wh-100x abs-tlr"><img alt="" src="{{article.imgInstead}}"></div>
               <div class="ml-120 min-h-100x">

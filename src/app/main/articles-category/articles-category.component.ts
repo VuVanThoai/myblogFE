@@ -96,4 +96,9 @@ export class ArticlesCategoryComponent implements OnInit {
   bottomReached(): boolean {
     return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
   }
+
+  onViewArticleRelation(url: string) {
+    this.router.navigate(['/article/' + url]);
+    window.scroll(0, 0);
+  }
 }

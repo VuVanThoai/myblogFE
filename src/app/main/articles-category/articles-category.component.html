@@ -32,7 +32,7 @@
           <div class="a-ads-container ads-right">
             <iframe data-aa="1786965" src="//ad.a-ads.com/1786965?size=336x280" style="width:336px; height:280px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
           </div>
-          <a [routerLink]="['/article/' + article.url]" *ngFor="let article of listNewArticle" class="article-container oflow-hidden pos-relative mb-20 dplay-block" href="#">
+          <a *ngFor="let article of listNewArticle" (click)="onViewArticleRelation(article.url)" class="article-container oflow-hidden pos-relative mb-20 dplay-block">
             <div class="wh-100x abs-tlr"><img src="{{article?.imgInstead}}" alt=""></div>
             <div class="ml-120 min-h-100x">
               <h5 class="article-title"><b>{{article?.title}}</b></h5>
