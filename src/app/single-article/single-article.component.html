@@ -30,7 +30,7 @@
         <h4 class="p-title mt-20"><b>Hãy để lại bình luận của bạn về bài viết này nhé.</b></h4>
         <div *ngFor="let comment of listComments" class="sided-70 mb-40">
           <div class="s-left rounded">
-            <img alt="" src="assets/images/profile-3-120x120.jpg">
+            <img alt="" src="assets/images/avt_default.jpg">
           </div><!-- s-left -->
           <div class="s-right ml-100 ml-xs-85">
             <h5><b>{{comment?.clientName || 'Khách ẩn danh'}} </b> <span class="font-8 color-ash"> đã thêm một bình luận vào {{comment.createDate | date: 'dd-MM-yyyy'}}</span>
@@ -53,8 +53,8 @@
         <div class="pl-20 pl-md-0">
           <div>
             <h4 class="p-title"><b>Có thể bạn sẽ thích</b></h4>
-            <div class="a-ads-container">
-              <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
+            <div class="a-ads-container ads-right">
+              <iframe data-aa="1786965" src="//ad.a-ads.com/1786965?size=336x280" style="width:336px; height:280px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
             </div>
             <a *ngFor="let article of listArticlesHeightView" [routerLink]="['/article/' + article.url]"
                class="article-container oflow-hidden pos-relative mb-20 dplay-block">
@@ -72,6 +72,7 @@
 </section>
 
 <div class="a-ads-container">
+  <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
   <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
 </div>
 
