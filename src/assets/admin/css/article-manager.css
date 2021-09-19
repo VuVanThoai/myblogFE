@@ -4,7 +4,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
-	-webkit-line-clamp: 3; /* number of lines to show */
+	-webkit-line-clamp: 2; /* number of lines to show */
 	-webkit-box-orient: vertical;
 }
 
@@ -116,7 +116,7 @@ button:focus {
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	line-height: 16px; /* fallback */
-	-webkit-line-clamp: 3; /* number of lines to show */
+	-webkit-line-clamp: 2; /* number of lines to show */
 	-webkit-box-orient: vertical;
 }
 
@@ -149,6 +149,7 @@ button:focus {
 
 a {
 	text-decoration: none;
+  cursor: pointer;
 }
 
 @media ( max-width : 1760px) and (min-width: 1200px) {
