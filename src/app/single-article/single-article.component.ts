@@ -59,7 +59,7 @@ export class SingleArticleComponent implements OnInit {
         this.pageTitle.setTitle(article.title);
         this.meta.updateTag({property: 'og:title', content: article.title} );
         this.meta.updateTag({property: 'og:description', content: article.title} );
-        this.meta.updateTag({property: 'og:type', content: article.nameCategory} );
+        this.meta.updateTag({property: 'og:type', content: 'article'} );
         this.meta.updateTag({property: 'og:url', content: 'https://giaitrivn247.com/' + article.url} );
         this.meta.updateTag({property: 'og:image', content: article.imgInstead} );
         this.listTags = article.tag.split(',');
