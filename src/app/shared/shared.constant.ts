@@ -34,23 +34,23 @@ export const Categories = [
   },
   {
     id: 2,
-    name: 'Khoa học công nghệ',
-    shortUrl: 'khoa-hoc-cong-nghe'
+    name: 'Khoa học và đời sống',
+    shortUrl: 'khoa-hoc-va-doi-song'
   },
   {
     id: 3,
-    name: 'Thể thao',
-    shortUrl: 'the-thao'
+    name: 'Ảnh nghệ thuật',
+    shortUrl: 'anh-nghe-thuat'
   },
   {
     id: 4,
-    name: 'Pháp luật',
-    shortUrl: 'phap-luat'
+    name: 'Kiếm tiền online',
+    shortUrl: 'mmo'
   },
   {
     id: 5,
-    name: 'Kiếm tiền online',
-    shortUrl: 'mmo'
+    name: 'Săn sale',
+    shortUrl: 'big-sale'
   },
   {
     id: 6,
