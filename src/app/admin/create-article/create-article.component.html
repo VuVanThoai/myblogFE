@@ -41,6 +41,7 @@
               <div class="article-label">
                 <span>Body : </span>
               </div>
+              <span class="element-tag" *ngFor="let element of elementHtmlDefault"> {{element}} </span>
               <div class="article-value">
                 <textarea formControlName="body" required id="body-article" placeholder="Nhập nội dung bài viết ..."></textarea>
               </div>
@@ -67,4 +68,4 @@
   <!-- End of Content Wrapper -->
 </div>
 <a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i></a>
-<app-modal *ngIf="showModal" [title]="'Tạo bài viết thành công'" (onClickContinuous)="onBackToManagement()"></app-modal>
+<app-modal *ngIf="showModal" [title]="messageCreateArticle" (onClickContinuous)="onBackToManagement()"></app-modal>

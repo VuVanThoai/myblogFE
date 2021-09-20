@@ -11,7 +11,7 @@ import {ArticleReviewComponent} from "./article-review/article-review.component"
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     children: [
       {
         path: '',

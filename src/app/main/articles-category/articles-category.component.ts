@@ -39,7 +39,9 @@ export class ArticlesCategoryComponent implements OnInit {
       this.showModal = false;
       this.offsetLoadMore = 0;
       this.pageTitle.setTitle('Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name);
-      this.meta.updateTag({name: 'description', content: 'Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name} )
+      this.meta.updateTag({name: 'description', content: 'Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name} );
+      this.meta.updateTag({name: 'og:description', content: 'Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name} );
+      this.meta.updateTag({name: 'og:title', content: 'Đây là trang tổng hợp thông tin với chủ đề ' + this.categoryByShortUrl?.name} );
       this.getListArticlesByIdCategoryOffset(0);
       this.getListNewArticles();
     })

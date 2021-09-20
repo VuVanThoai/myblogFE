@@ -15,10 +15,11 @@ export class CreateArticleComponent implements OnInit {
 
   formInitArticle = new FormGroup({});
   categories = Categories;
-  articleStore?: Article;
   showModal = false;
   article?: Article;
   images: any[] = [];
+  messageCreateArticle = 'Tạo bài viết thành công';
+  elementHtmlDefault = ['<p class="mtb-15"></p>', '<a class="hyper-link" href=""></a>', '<figure><img src=""><figcaption></figcaption></figure>', '<div class="quote-primary mtb-20"><h5></h5></div>', '<h4><b></b></h4>'];
 
   constructor(
     private fb: FormBuilder,
@@ -90,6 +91,7 @@ export class CreateArticleComponent implements OnInit {
       },
       error: (error: any) => {
         console.log(error);
+        this.messageCreateArticle = 'Tạo bài viết thất bại';
       }
     })
   }
@@ -158,5 +160,10 @@ export class CreateArticleComponent implements OnInit {
   onBackToManagement() {
     this.showModal = false;
     this.router.navigate(['/admin/article-management']);
+  }
+
+  copyToClipBoard(element: any) {
+    document.execCommand('copy', element);
+    console.log('-----------------')
   }
 }
