@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CommonService} from "../core/service/common.service";
 import {Article, Comment, MethodApi} from "../shared/shared.constant";
@@ -10,7 +10,7 @@ import {Meta, Title} from "@angular/platform-browser";
   templateUrl: './single-article.component.html',
   styleUrls: ['./single-article.component.scss']
 })
-export class SingleArticleComponent implements OnInit, AfterViewInit {
+export class SingleArticleComponent implements OnInit {
 
   article?: Article;
   listTags: string[] = [];
@@ -30,15 +30,6 @@ export class SingleArticleComponent implements OnInit, AfterViewInit {
   ) {
     this.initFormComment();
   }
-
-  ngAfterViewInit(): void {
-    this.pageTitle.setTitle(this.article?.title || '');
-    this.meta.updateTag({property: 'og:title', content: this.article?.title || ''} );
-    this.meta.updateTag({property: 'og:description', content: this.article?.title || ''} );
-    this.meta.updateTag({property: 'og:type', content: 'article'} );
-    this.meta.updateTag({property: 'og:url', content: 'https://giaitrivn247.com/' + this.article?.url} );
-    this.meta.updateTag({property: 'og:image', content: this.article?.imgInstead || ''} );
-    }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((value) => {
@@ -65,6 +56,12 @@ export class SingleArticleComponent implements OnInit, AfterViewInit {
         }
         this.loading = false;
         this.article = article;
+        this.pageTitle.setTitle(article.title);
+        this.meta.updateTag({property: 'og:title', content: article.title} );
+        this.meta.updateTag({property: 'og:description', content: article.title} );
+        this.meta.updateTag({property: 'og:type', content: article.nameCategory} );
+        this.meta.updateTag({property: 'og:url', content: 'https://giaitrivn247.com/' + article.url} );
+        this.meta.updateTag({property: 'og:image', content: article.imgInstead} );
         this.listTags = article.tag.split(',');
         this.getListCommentsByIdArticle();
         this.updateViewArticle();
