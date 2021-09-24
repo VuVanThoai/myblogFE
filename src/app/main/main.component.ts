@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageTitle.setTitle('Giaitrivn247.com là website cập nhật các thông tin giải trí trong và ngoài nước từng ngày, ngoài ra còn có các kiến thức hữu ích trong cuộc sống như khoa học công nghệ, y học, MMO hay săn sale cho mọi người mua đồ trên các sàn thương mại điện tử.');
-    this.meta.updateTag({name: 'description', content: 'Giaitrivn247.com là website cập nhật các thông tin giải trí trong và ngoài nước từng ngày, ngoài ra còn có các kiến thức hữu ích trong cuộc sống như khoa học công nghệ, y học, MMO hay săn sale cho mọi người mua đồ trên các sàn thương mại điện tử.'} )
+    this.meta.addTag({name: 'description', content: 'Giaitrivn247.com là website cập nhật các thông tin giải trí trong và ngoài nước từng ngày, ngoài ra còn có các kiến thức hữu ích trong cuộc sống như khoa học công nghệ, y học, MMO hay săn sale cho mọi người mua đồ trên các sàn thương mại điện tử.'} )
     this.getListArticlesHeightView();
     this.getListNewArticlesLoadMoreOffset(0);
   }

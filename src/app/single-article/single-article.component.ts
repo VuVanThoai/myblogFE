@@ -57,11 +57,11 @@ export class SingleArticleComponent implements OnInit {
         this.loading = false;
         this.article = article;
         this.pageTitle.setTitle(article.title);
-        this.meta.updateTag({property: 'og:title', content: article.title} );
-        this.meta.updateTag({property: 'og:description', content: article.title} );
-        this.meta.updateTag({property: 'og:type', content: article.nameCategory} );
-        this.meta.updateTag({property: 'og:url', content: 'https://giaitrivn247.com/' + article.url} );
-        this.meta.updateTag({property: 'og:image', content: article.imgInstead} );
+        this.meta.addTag({property: 'og:title', content: article.title} );
+        this.meta.addTag({property: 'og:description', content: article.title} );
+        this.meta.addTag({property: 'og:type', content: article.nameCategory} );
+        this.meta.addTag({property: 'og:url', content: 'https://giaitrivn247.com/' + article.url} );
+        this.meta.addTag({property: 'og:image', content: article.imgInstead} );
         this.listTags = article.tag.split(',');
         this.getListCommentsByIdArticle();
         this.updateViewArticle();

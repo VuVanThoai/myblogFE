@@ -34,28 +34,18 @@ export const Categories = [
   },
   {
     id: 2,
-    name: 'Khoa học và đời sống',
-    shortUrl: 'khoa-hoc-va-doi-song'
+    name: 'Gái xinh',
+    shortUrl: 'gai-xinh'
   },
   {
     id: 3,
-    name: 'Ảnh nghệ thuật',
-    shortUrl: 'anh-nghe-thuat'
+    name: 'Truyện tranh',
+    shortUrl: 'truyen-tranh'
   },
   {
     id: 4,
-    name: 'Kiếm tiền online',
-    shortUrl: 'mmo'
-  },
-  {
-    id: 5,
-    name: 'Săn sale',
-    shortUrl: 'big-sale'
-  },
-  {
-    id: 6,
-    name: 'Kiến thức cuộc sống',
-    shortUrl: 'kien-thuc-cuoc-song'
+    name: 'Truyện tuổi mới lớn',
+    shortUrl: 'truyen-tuoi-moi-lon'
   }
 ] as Array<Category>;
 
