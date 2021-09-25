@@ -53,9 +53,6 @@
         <div class="pl-20 pl-md-0">
           <div>
             <h4 class="p-title"><b>Có thể bạn sẽ thích</b></h4>
-<!--            <div class="a-ads-container ads-right">-->
-<!--              <iframe data-aa="1791624" src="//ad.a-ads.com/1791624?size=336x280" style="width:336px; height:280px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>-->
-<!--            </div>-->
             <a *ngFor="let article of listArticlesHeightView" (click)="onViewOtherArticle(article.url)"
                class="article-container oflow-hidden pos-relative mb-20 dplay-block">
               <div class="wh-100x abs-tlr"><img alt="" src="{{article.imgInstead}}"></div>
@@ -70,11 +67,6 @@
     </div><!-- row -->
   </div><!-- container -->
 </section>
-
-<!--<div class="a-ads-container">-->
-<!--  <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>-->
-<!--  <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>-->
-<!--</div>-->
 
 <app-client-footer></app-client-footer>
 <app-loading [loading]="loading"></app-loading>
