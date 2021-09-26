@@ -53,6 +53,9 @@
         <div class="pl-20 pl-md-0">
           <div>
             <h4 class="p-title"><b>Có thể bạn sẽ thích</b></h4>
+            <div class="a-ads-container ads-right">
+              <script src="https://static.adxadserv.com/js/adb.js" type="text/javascript" data-adxad-place="614f502561d6e20a6428b2bb" async></script><div id="614f502561d6e20a6428b2bb" data-width="300" data-height="250" data-output="html"></div>
+            </div>
             <a *ngFor="let article of listArticlesHeightView" (click)="onViewOtherArticle(article.url)"
                class="article-container oflow-hidden pos-relative mb-20 dplay-block">
               <div class="wh-100x abs-tlr"><img alt="" src="{{article.imgInstead}}"></div>
@@ -61,12 +64,23 @@
                 <h6 class="pt-10">Tác giả <span><b>Thuỳ Dương,</b></span> {{article.createDate | date: 'dd-MM-yy'}}</h6>
               </div>
             </a><!-- oflow-hidden -->
+            <div class="a-ads-container ads-right">
+              <script> var ad_spot = '614f502561d6e20a6428b2bb'; var ad_h = 250; var ad_w = 300; var ad_output = 'html';
+              </script>
+              <script src="//static.adxadserv.com/js/adserv-slider.js" type="text/javascript"></script>            </div>
           </div><!-- mtb-50 -->
         </div><!--  pl-20 -->
       </div><!-- col-md-3 -->
     </div><!-- row -->
   </div><!-- container -->
 </section>
+
+<div class="a-ads-container">
+  <script src="https://static.adxadserv.com/js/adb.js" type="text/javascript" data-adxad-place="614f503161d6e214c808a531" async></script><div id="614f503161d6e214c808a531" data-width="728" data-height="90" data-output="html"></div>
+  <script> var ad_spot = '614f503161d6e214c808a531'; var ad_h = 90; var ad_w = 728; var ad_output = 'html';
+  </script>
+  <script src="//static.adxadserv.com/js/adserv-slider.js" type="text/javascript"></script>
+</div>
 
 <app-client-footer></app-client-footer>
 <app-loading [loading]="loading"></app-loading>
