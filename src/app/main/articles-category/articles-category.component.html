@@ -22,10 +22,7 @@
         <div>
           <h4 class="p-title"><b>Tin được đọc nhiều</b></h4>
 
-          <div class="a-ads-container ads-right">
-            <script> var ad_spot = '614f502561d6e20a6428b2bb'; var ad_h = 250; var ad_w = 300; var ad_output = 'html';
-            </script>
-            <script src="//static.adxadserv.com/js/adserv-slider.js" type="text/javascript"></script>          </div>
+<!--          <div class="a-ads-container ads-right"></div>-->
           <a *ngFor="let article of listNewArticle" (click)="onViewArticleRelation(article.url)" class="article-container oflow-hidden pos-relative mb-20 dplay-block">
             <div class="wh-100x abs-tlr"><img src="{{article?.imgInstead}}" alt=""></div>
             <div class="ml-120 min-h-100x">
@@ -48,15 +45,12 @@
     </div><!-- col-md-3 -->
   </div>
 </div>
-<!-- Composite Start -->
-<div id="M750087ScriptRootC1205194"></div>
-<script src="https://jsc.adskeeper.co.uk/g/i/giaitrivn247.com.1205194.js" async></script>
+
 <!-- Composite End -->
 <div class="a-ads-container">
-  <script src="https://static.adxadserv.com/js/adb.js" type="text/javascript" data-adxad-place="614f4fd161d6e213c5653c31" async></script><div id="614f4fd161d6e213c5653c31" data-width="300" data-height="100" data-output="html"></div></div>
-<div class="a-ads-container">
-  <script> var ad_spot = '614f4fd161d6e213c5653c31'; var ad_h = 100; var ad_w = 300; var ad_output = 'html';
-  </script>
-  <script src="//static.adxadserv.com/js/adserv-slider.js" type="text/javascript"></script></div>
+  <!-- Composite Start -->
+  <div id="M750087ScriptRootC1205194"></div>
+  <script src="https://jsc.adskeeper.co.uk/g/i/giaitrivn247.com.1205194.js" async></script>
+</div>
 <app-client-footer></app-client-footer>
 <app-loading [loading]="loading"></app-loading>
