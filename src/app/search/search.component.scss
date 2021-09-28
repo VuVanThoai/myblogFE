@@ -1,0 +1,46 @@
+.df-align-item-center {
+  align-items: flex-start;
+}
+
+.load-more {
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.article {
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: #F9B500 !important;
+}
+
+.article-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.article-container {
+  .article-title {
+    height: 45px;
+  }
+  &:hover {
+    color: #F9B500;
+  }
+}
+
+.a-ads-container {
+  height: 250px;
+  margin-top: 20px;
+  margin-bottom: 45px;
+  display: flex;
+  justify-content: center;
+}
+
+.ads-right {
+  margin-top: unset !important;
+}

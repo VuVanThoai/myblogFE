@@ -1,0 +1,26 @@
+<app-client-header></app-client-header>
+<div class="container">
+  <div class="row df-align-item-center">
+    <div class="col-md-12 col-lg-12">
+      <h4 class="p-title"><b>Key search : {{key}}</b></h4>
+      <div class="row">
+        <div [routerLink]="['/article/' + article.url]" *ngFor="let article of listArticlesBySearch" class="article-container article col-sm-4">
+          <img src="{{article.imgInstead}}" alt="">
+          <h4 class="cl-058bff pt-20"><a class="article-title"><b>{{article.title}}</b></a></h4>
+          <ul class="list-li-mr-20 pt-10 mb-30">
+            <li class="cl-058bff">Tác giả <a class="color-black"><b>Thuỳ Dương,</b></a>
+              {{article.createDate | date}}</li>
+            <li class="cl-058bff"><i class="mr-5 font-12 ion-ios-bolt"></i>{{article.view}}</li>
+            <li class="cl-058bff"><i class="mr-5 font-12 ion-chatbubbles"></i>{{article.comment}}</li>
+          </ul>
+        </div><!-- col-sm-6 -->
+      </div><!-- row -->
+    </div><!-- col-md-9 -->
+  </div>
+</div>
+
+<!-- Composite End -->
+<div class="a-ads-container">
+</div>
+<app-client-footer></app-client-footer>
+<app-loading [loading]="loading"></app-loading>

@@ -19,4 +19,11 @@ export class ClientHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  onValueChange($event: any) {
+    const keySearch = $event.target.value;
+    if (keySearch !== '') {
+      this.router.navigate(['/search'], {queryParams: {key: keySearch}});
+    }
+  }
 }

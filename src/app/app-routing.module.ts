@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
       },
       {
+        path: 'search',
+        loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
+      },
+      {
         path: 'error',
         component: ErrorHandlingComponent
       },

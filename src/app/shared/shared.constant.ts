@@ -34,18 +34,23 @@ export const Categories = [
   },
   {
     id: 2,
-    name: 'Gái xinh',
-    shortUrl: 'gai-xinh'
+    name: 'Đọc truyện online',
+    shortUrl: 'doc-truyen-online'
   },
   {
     id: 3,
-    name: 'Truyện tranh',
-    shortUrl: 'truyen-tranh'
+    name: 'Phim hay',
+    shortUrl: 'phim-hay'
   },
   {
     id: 4,
-    name: 'Truyện tuổi mới lớn',
-    shortUrl: 'truyen-tuoi-moi-lon'
+    name: 'Thủ thuật phần mềm',
+    shortUrl: 'thu-thuat-phan-mem'
+  },
+  {
+    id: 5,
+    name: 'Kiếm tiền online',
+    shortUrl: 'mmo'
   }
 ] as Array<Category>;
 

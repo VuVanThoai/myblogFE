@@ -25,7 +25,7 @@
 <!--      <i class="close-icn ion-close"></i>-->
 <!--    </a>-->
 <!--    <div class="src-form" [class.active]="showFormSearch">-->
-<!--        <input type="text" placeholder="Search here">-->
+<!--        <input (change)="onValueChange($event)" type="text" placeholder="Search here">-->
 <!--    </div>-->
 
     <a (click)="showMenuMobile = !showMenuMobile" class="menu-nav-icon" data-menu="#main-menu"><span class="menu-swap-text">Menu </span> <i class="ion-navicon"></i></a>

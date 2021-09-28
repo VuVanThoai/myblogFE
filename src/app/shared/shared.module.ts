@@ -6,13 +6,15 @@ import {ClientFooterComponent} from "./client-footer/client-footer.component";
 import {RouterModule} from "@angular/router";
 import {LoadingComponent} from "./loading/loading.component";
 import {ModalComponent} from "./modal/modal.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [ClientHeaderComponent, ClientFooterComponent, SharedComponent, LoadingComponent, ModalComponent],
     exports: [ClientHeaderComponent, ClientFooterComponent, ModalComponent, LoadingComponent],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        ReactiveFormsModule
     ]
 })
 export class SharedModule { }
