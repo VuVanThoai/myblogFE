@@ -22,7 +22,9 @@
         <div>
           <h4 class="p-title"><b>Tin được đọc nhiều</b></h4>
 
-<!--          <div class="a-ads-container ads-right"></div>-->
+          <div class="a-ads-container ads-right">
+            <iframe data-aa="1791624" src="//ad.a-ads.com/1791624?size=336x280" style="width:336px; height:280px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
+          </div>
           <a *ngFor="let article of listNewArticle" (click)="onViewArticleRelation(article.url)" class="article-container oflow-hidden pos-relative mb-20 dplay-block">
             <div class="wh-100x abs-tlr"><img src="{{article?.imgInstead}}" alt=""></div>
             <div class="ml-120 min-h-100x">
@@ -48,6 +50,7 @@
 
 <!-- Composite End -->
 <div class="a-ads-container">
+  <iframe data-aa="1786192" src="//ad.a-ads.com/1786192?size=970x250" style="width:970px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;" ></iframe>
 </div>
 <app-client-footer></app-client-footer>
 <app-loading [loading]="loading"></app-loading>
