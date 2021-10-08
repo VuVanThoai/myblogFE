@@ -10,7 +10,12 @@
           <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>{{article?.view}}</li>
           <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>{{article?.comment}}</li>
         </ul>
-        <div [innerHTML]="article?.body"></div>
+        <ng-container *ngIf="article?.idCategory !== 3; else movie">
+          <div [innerHTML]="article?.body"></div>
+        </ng-container>
+        <ng-template #movie>
+          {{article?.body}}
+        </ng-template>
         <div class="float-left-right text-center mt-40 mt-sm-20">
           <ul
             class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
