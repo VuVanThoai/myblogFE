@@ -20,7 +20,10 @@ export class CommonService {
 
   callApi(options: OptionCallAPI) {
     const method = options.method;
-    const url = 'https://' + location.hostname + ':8443/api/' + options.url;
+    let url = 'http://localhost:8443/api/' + options.url;
+    if (location.hostname !== 'localhost') {
+      url = 'https://' + location.hostname + ':8443/api/' + options.url;
+    }
     const data = options.data;
     const contentType = options.contentType ? options.contentType : 'application/json';
     let progress = options.progress;

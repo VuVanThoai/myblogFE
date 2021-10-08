@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CommonService} from "../core/service/common.service";
 import {Article, Comment, MethodApi} from "../shared/shared.constant";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Meta, Title} from "@angular/platform-browser";
+import {Meta, Title, DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-single-article',
@@ -26,7 +26,8 @@ export class SingleArticleComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private pageTitle: Title,
-    private meta: Meta
+    private meta: Meta,
+    private sanitizer: DomSanitizer
   ) {
     this.initFormComment();
   }
@@ -51,6 +52,7 @@ export class SingleArticleComponent implements OnInit {
       url: 'v1/article/query-url/' + url,
       progress: true,
       success: (article: Article) => {
+        article.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
         if (!article) {
           this.router.navigate(['/error']);
         }
