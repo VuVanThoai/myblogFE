@@ -13,6 +13,7 @@ import {Meta, Title, DomSanitizer} from "@angular/platform-browser";
 export class SingleArticleComponent implements OnInit {
 
   article?: Article;
+  articleByPass?: Article;
   listTags: string[] = [];
   listComments: Comment[] = [];
   formComment: FormGroup = new FormGroup({});
@@ -52,7 +53,10 @@ export class SingleArticleComponent implements OnInit {
       url: 'v1/article/query-url/' + url,
       progress: true,
       success: (article: Article) => {
-        article.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
+        this.articleByPass = article;
+        if (article.idCategory === 3) {
+          this.articleByPass.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
+        }
         if (!article) {
           this.router.navigate(['/error']);
         }
@@ -132,7 +136,7 @@ export class SingleArticleComponent implements OnInit {
       ...this.article, comment: this.article.comment += 1,
     };
     this.commonService.callApi({
-      method: MethodApi.POST,
+      method: MethodApi.PUT,
       url: 'v1/article',
       data:requestBody,
     })
@@ -146,7 +150,7 @@ export class SingleArticleComponent implements OnInit {
       ...this.article, view: this.article.view += (Math.floor(Math.random() * 2) + 1),
     };
     this.commonService.callApi({
-      method: MethodApi.POST,
+      method: MethodApi.PUT,
       url: 'v1/article',
       data:requestBody,
     })

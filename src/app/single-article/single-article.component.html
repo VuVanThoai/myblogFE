@@ -3,14 +3,14 @@
   <div class="container">
     <div class="row df-align-item-center">
       <div class="col-md-12 col-lg-8">
-        <img src="{{article?.imgInstead}}">
-        <h3 class="mt-30"><b>{{article?.title}}</b></h3>
+        <img src="{{articleByPass?.imgInstead}}">
+        <h3 class="mt-30"><b>{{articleByPass?.title}}</b></h3>
         <ul class="list-li-mr-20 mtb-15">
-          <li>Tác giả: <a class="color-primary"><b>Thuỳ Dương </b></a>. Ngày viết bài:  {{article?.createDate | date: 'dd-MM-yyyy' }}</li>
-          <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>{{article?.view}}</li>
-          <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>{{article?.comment}}</li>
+          <li>Tác giả: <a class="color-primary"><b>Thuỳ Dương </b></a>. Ngày viết bài:  {{articleByPass?.createDate | date: 'dd-MM-yyyy' }}</li>
+          <li><i class="color-primary mr-5 font-12 ion-ios-bolt"></i>{{articleByPass?.view}}</li>
+          <li><i class="color-primary mr-5 font-12 ion-chatbubbles"></i>{{articleByPass?.comment}}</li>
         </ul>
-        <div [innerHTML]="article?.body"></div>
+        <div [innerHTML]="articleByPass?.body"></div>
         <div class="float-left-right text-center mt-40 mt-sm-20">
           <ul
             class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
@@ -50,12 +50,12 @@
         <div class="pl-20 pl-md-0">
           <div>
             <h4 class="p-title"><b>Có thể bạn sẽ thích</b></h4>
-            <a *ngFor="let article of listArticlesHeightView" (click)="onViewOtherArticle(article.url)"
-               class="article-container oflow-hidden pos-relative mb-20 dplay-block">
-              <div class="wh-100x abs-tlr"><img alt="" src="{{article.imgInstead}}"></div>
+            <a *ngFor="let articleByPass of listArticlesHeightView" (click)="onViewOtherArticle(articleByPass.url)"
+               class="articleByPass-container oflow-hidden pos-relative mb-20 dplay-block">
+              <div class="wh-100x abs-tlr"><img alt="" src="{{articleByPass.imgInstead}}"></div>
               <div class="ml-120 min-h-100x">
-                <h5 class="article-title"><b>{{article.title}}</b></h5>
-                <h6 class="pt-10">Tác giả <span><b>Thuỳ Dương,</b></span> {{article.createDate | date: 'dd-MM-yy'}}</h6>
+                <h5 class="articleByPass-title"><b>{{articleByPass.title}}</b></h5>
+                <h6 class="pt-10">Tác giả <span><b>Thuỳ Dương,</b></span> {{articleByPass.createDate | date: 'dd-MM-yy'}}</h6>
               </div>
             </a><!-- oflow-hidden -->
           </div><!-- mtb-50 -->
