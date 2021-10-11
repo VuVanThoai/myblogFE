@@ -13,6 +13,7 @@ import {Meta, Title, DomSanitizer} from "@angular/platform-browser";
 export class SingleArticleComponent implements OnInit {
 
   article?: Article;
+  articleByPass?: Article;
   listTags: string[] = [];
   listComments: Comment[] = [];
   formComment: FormGroup = new FormGroup({});
@@ -53,8 +54,9 @@ export class SingleArticleComponent implements OnInit {
       progress: true,
       success: (article: Article) => {
         this.article = article;
+        this.articleByPass = article;
         if (article.idCategory === 3) {
-          this.article.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
+          this.articleByPass.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
         }
         if (!article) {
           this.router.navigate(['/error']);
