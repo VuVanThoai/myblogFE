@@ -21,8 +21,10 @@ export class CommonService {
   callApi(options: OptionCallAPI) {
     const method = options.method;
     let url = 'http://localhost:8443/api/' + options.url;
+    let origin = 'http://localhost:4200';
     if (location.hostname !== 'localhost') {
       url = 'https://' + location.hostname + ':8443/api/' + options.url;
+      origin = 'https://giaitrivn247.com';
     }
     const data = options.data;
     const contentType = options.contentType ? options.contentType : 'application/json';
@@ -38,7 +40,7 @@ export class CommonService {
     let obs: Observable<any>;
 
     const httpOptions = {
-      headers: this.buildHttpHeaders(contentType)
+      headers: this.buildHttpHeaders(contentType, origin)
     };
 
     if (method === 'GET') {
@@ -85,21 +87,11 @@ export class CommonService {
       });
   }
 
-  buildHttpHeaders(contentType: string) {
-    if (!contentType || contentType !== 'upload') {
-      return new HttpHeaders({
-        'Content-Type': contentType,
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
-        'Access-Control-Allow-Origin': 'https://giaitrivn247.com',
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
-        'Access-Control-Max-Age': '3600',
-        'Access-Control-Allow-Headers': 'Content-Type, Accept, X-Requested-With, remember-me'
-      })
-    }
+  buildHttpHeaders(contentType: string, origin: string) {
     return new HttpHeaders({
+      'Content-Type': contentType,
       'Authorization': 'Bearer ' + localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': 'https://giaitrivn247.com',
+      'Access-Control-Allow-Origin': origin,
       'Access-Control-Allow-Credentials': 'true',
       'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
       'Access-Control-Max-Age': '3600',

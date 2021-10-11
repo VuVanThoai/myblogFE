@@ -136,7 +136,7 @@ export class SingleArticleComponent implements OnInit {
       ...this.article, comment: this.article.comment += 1,
     };
     this.commonService.callApi({
-      method: MethodApi.PUT,
+      method: MethodApi.POST,
       url: 'v1/article',
       data:requestBody,
     })
@@ -150,7 +150,7 @@ export class SingleArticleComponent implements OnInit {
       ...this.article, view: this.article.view += (Math.floor(Math.random() * 2) + 1),
     };
     this.commonService.callApi({
-      method: MethodApi.PUT,
+      method: MethodApi.POST,
       url: 'v1/article',
       data:requestBody,
     })
