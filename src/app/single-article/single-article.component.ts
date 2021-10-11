@@ -54,7 +54,7 @@ export class SingleArticleComponent implements OnInit {
       progress: true,
       success: (article: Article) => {
         this.article = article;
-        this.articleByPass = article;
+        this.articleByPass = {...article};
         if (article.idCategory === 3) {
           this.articleByPass.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
         }
