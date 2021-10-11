@@ -13,7 +13,6 @@ import {Meta, Title, DomSanitizer} from "@angular/platform-browser";
 export class SingleArticleComponent implements OnInit {
 
   article?: Article;
-  articleByPass?: Article;
   listTags: string[] = [];
   listComments: Comment[] = [];
   formComment: FormGroup = new FormGroup({});
@@ -53,15 +52,14 @@ export class SingleArticleComponent implements OnInit {
       url: 'v1/article/query-url/' + url,
       progress: true,
       success: (article: Article) => {
-        this.articleByPass = article;
+        this.article = article;
         if (article.idCategory === 3) {
-          this.articleByPass.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
+          this.article.body = <string>this.sanitizer.bypassSecurityTrustHtml(article.body);
         }
         if (!article) {
           this.router.navigate(['/error']);
         }
         this.loading = false;
-        this.article = article;
         this.pageTitle.setTitle(article.title);
         this.meta.addTag({property: 'og:title', content: article.title} );
         this.meta.addTag({property: 'og:description', content: article.title} );
